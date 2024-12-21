@@ -1,19 +1,15 @@
 package com.nttdata.steps;
 
-import com.nttdata.screens.CarritoDosScreen;
 import com.nttdata.screens.CarritoScreen;
 import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CarritoSteps {
     CarritoScreen carritoScreen;
-    CarritoDosScreen carritoDosScreen;
     public void validoProductosCargados(){
         Assert.assertTrue("No se mostró el titulo Pruducts", carritoScreen.isProductDisplayed());
     }
     public void validateCategoria(String categoria){
-        Assert.assertEquals("Categoria no existe: ",categoria, carritoScreen.getCategoria());
+        Assert.assertEquals("Categoria no existe: ",categoria, carritoScreen.getCategoria(categoria));
         carritoScreen.clickCategoria();
     }
     public void addAlCarrito( ){
@@ -32,15 +28,15 @@ public class CarritoSteps {
             addAlCarrito();
         }
     }
-    public void entrarACarrito( ){
+    public void entrarACarrito(int cantidad){
         carritoScreen.clickCarrito();
+        validaCantidadAdd(cantidad);
     }
-    public void validaCantidadAdd(String cantidadAd){
+    public void validaCantidadAdd(int cantidadAd){
         try {
             Assert.assertEquals("Cantidad Añadido no coincide", cantidadAd, carritoScreen.getCantidadAdd());
             System.out.println("Validación exitosa: Cantidad añadida coincide");
         } catch (AssertionError e) {
-            System.out.println("Error en validación: ");
         }
     }
 

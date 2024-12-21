@@ -22,9 +22,8 @@ public class CarriroStepsDef {
         carritoSteps.validateCategoria(categoria);
         carritoSteps.validateAgregarCarrito(cantidad);
     }
-    @Then("valido el carrito de compra actualice correctamente")
-    public void valido_el_carrito_de_compra_actualice_correctamente() {
-        carritoSteps.entrarACarrito();
-
+    @Then("valido el carrito de compra actualice correctamente {int}")
+    public void valido_el_carrito_de_compra_actualice_correctamente(int cantidad) {
+        carritoSteps.entrarACarrito(cantidad);
     }
 }
